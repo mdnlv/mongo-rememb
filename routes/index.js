@@ -23,4 +23,26 @@ app.post("/profile", async (request, response) => {
   }
 });
 
+app.delete("/profile/:id", async (request, response) => {
+  try {
+    const profile = await profileModel.findByIdAndDelete(request.params.id);
+
+    if (!profile) response.status(404).send("No item found");
+    response.status(200).send();
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
+
+app.patch("/profile/:id", async (request, response) => {
+  try {
+    await profileModel.findByIdAndUpdate(request.params.id, request.body);
+    await profileModel.save();
+    response.send(profile);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
 module.exports = app;

@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const router = require("./routes/index.js");
 
 const app = express();
-mongoose.set('strictQuery', false);
 app.use(express.json());
 
+mongoose.set('strictQuery', false);
 mongoose.connect(
   "mongodb+srv://md:fwDtWFk22LXxbjlk@cluster0.1ttrtw8.mongodb.net/?retryWrites=true&w=majority",
   {
